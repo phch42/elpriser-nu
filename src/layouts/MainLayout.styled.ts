@@ -13,6 +13,18 @@ export const Header = styled.header`
   margin: 0 auto;
 `;
 
+export const HeaderTop = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const Logo = styled.img`
+  display: block;
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+`;
+
 export const SettingsButton = styled.button`
   align-self: flex-end;
   display: flex;

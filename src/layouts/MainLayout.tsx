@@ -9,10 +9,13 @@ import Navigation, {
 import OverviewPage from '../pages/OverviewPage';
 import {
   Header,
+  HeaderTop,
+  Logo,
   SettingsButton,
   MainContent,
   PageLayout,
 } from './MainLayout.styled';
+import mainIcon from '../assets/appIcons/mainIcon.svg';
 
 export default function MainLayout() {
   const [activeSection, setActiveSection] =
@@ -21,6 +24,10 @@ export default function MainLayout() {
   return (
     <PageLayout>
       <Header>
+        <HeaderTop>
+          <Logo src={mainIcon} alt="ElPriser.nu" />
+        </HeaderTop>
+
         <Navigation
           activeSection={activeSection}
           onNavigate={setActiveSection}
