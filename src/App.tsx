@@ -1,10 +1,6 @@
-function App() {
+// src/App.tsx
+import MainLayout from './layouts/MainLayout';
 
-  return (
-    <>
-    
-    </>
-  )
+export default function App() {
+  return <MainLayout />;
 }
-
-export default App
