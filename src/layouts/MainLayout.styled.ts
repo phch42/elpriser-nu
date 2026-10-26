@@ -24,4 +24,8 @@ export const Header = styled.header`
 export const MainContent = styled.main`
   max-width: 1440px;
   margin: 2rem auto 0;
+
+  @media (max-width: 767px) {
+    padding-bottom: 5rem;
+  }
 `;
