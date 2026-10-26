@@ -1,3 +1,5 @@
+// src/layouts/MainLayout.tsx
+
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
@@ -7,12 +9,10 @@ import Navigation, {
 import OverviewPage from '../pages/OverviewPage';
 import {
   Header,
-  HeaderTop,
-  Logo,
   SettingsButton,
   MainContent,
+  PageLayout,
 } from './MainLayout.styled';
-import { PageLayout } from './MainLayout.styled';
 
 export default function MainLayout() {
   const [activeSection, setActiveSection] =
@@ -21,10 +21,6 @@ export default function MainLayout() {
   return (
     <PageLayout>
       <Header>
-        <HeaderTop>
-          <Logo>ElPriser.nu</Logo>
-        </HeaderTop>
-
         <Navigation
           activeSection={activeSection}
           onNavigate={setActiveSection}

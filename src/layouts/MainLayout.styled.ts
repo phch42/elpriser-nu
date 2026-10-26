@@ -13,18 +13,6 @@ export const Header = styled.header`
   margin: 0 auto;
 `;
 
-export const HeaderTop = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-export const Logo = styled.h1`
-  margin: 0;
-  color: var(--color-accent);
-  font-size: 1.5rem;
-  font-weight: 700;
-`;
-
 export const SettingsButton = styled.button`
   align-self: flex-end;
   display: flex;
