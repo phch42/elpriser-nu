@@ -1,11 +1,18 @@
-// src/layouts/MainLayout.tsx
-
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGear } from '@fortawesome/free-solid-svg-icons';
 import Navigation, {
   type NavigationSection,
 } from '../components/Navigation/Navigation';
 import OverviewPage from '../pages/OverviewPage';
-import { Header, MainContent, PageLayout } from './MainLayout.styled';
+import {
+  Header,
+  HeaderTop,
+  Logo,
+  SettingsButton,
+  MainContent,
+} from './MainLayout.styled';
+import { PageLayout } from './MainLayout.styled';
 
 export default function MainLayout() {
   const [activeSection, setActiveSection] =
@@ -14,11 +21,22 @@ export default function MainLayout() {
   return (
     <PageLayout>
       <Header>
-        <h1>ElPriser.nu</h1>
+        <HeaderTop>
+          <Logo>ElPriser.nu</Logo>
+        </HeaderTop>
+
         <Navigation
           activeSection={activeSection}
           onNavigate={setActiveSection}
         />
+
+        <SettingsButton
+          type="button"
+          aria-label="Åbn indstillinger"
+          onClick={() => setActiveSection('Indstillinger')}
+        >
+          <FontAwesomeIcon icon={faGear} />
+        </SettingsButton>
       </Header>
 
       <MainContent>
