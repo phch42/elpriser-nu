@@ -5,8 +5,9 @@ export const NavigationContainer = styled.nav`
   align-items: center;
   justify-content: space-around;
   gap: 0.25rem;
-  width: 100%;
-  margin-top: 1rem;
+  flex: 1;
+  min-width: 0;
+  margin-top: 0;
 `;
 
 export const NavigationLink = styled.button<{ $active: boolean }>`

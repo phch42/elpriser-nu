@@ -16,12 +16,15 @@ export const Header = styled.header`
 export const HeaderTop = styled.div`
   display: flex;
   align-items: center;
+  gap: 1rem;
+  width: 100%;
 `;
 
 export const Logo = styled.img`
   display: block;
-  width: 44px;
-  height: 44px;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
 `;
 

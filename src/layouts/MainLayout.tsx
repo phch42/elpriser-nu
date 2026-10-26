@@ -1,5 +1,3 @@
-// src/layouts/MainLayout.tsx
-
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
@@ -26,12 +24,12 @@ export default function MainLayout() {
       <Header>
         <HeaderTop>
           <Logo src={mainIcon} alt="ElPriser.nu" />
-        </HeaderTop>
 
-        <Navigation
-          activeSection={activeSection}
-          onNavigate={setActiveSection}
-        />
+          <Navigation
+            activeSection={activeSection}
+            onNavigate={setActiveSection}
+          />
+        </HeaderTop>
 
         <SettingsButton
           type="button"
