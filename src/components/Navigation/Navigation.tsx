@@ -1,4 +1,5 @@
 // src/components/Navigation/Navigation.tsx
+
 import {
   NavigationContainer,
   NavigationLink,
@@ -8,10 +9,11 @@ const navigationItems = [
   'Oversigt',
   'Lige nu',
   'Historik',
-  'Indstillinger',
 ] as const;
 
-export type NavigationSection = (typeof navigationItems)[number];
+export type NavigationSection =
+  | (typeof navigationItems)[number]
+  | 'Indstillinger';
 
 interface NavigationProps {
   activeSection: NavigationSection;
