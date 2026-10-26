@@ -34,3 +34,7 @@ export function getPriceColor(price: number, lowestPrice: number, highestPrice: 
 
     return `rgb${red}, ${green}, 0`;
 }
+
+export function calculatePriceWithVat(price: number, includeVat: boolean): number {
+    return includeVat ? price * 1.25 : price;
+}
