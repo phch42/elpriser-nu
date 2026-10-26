@@ -8,9 +8,9 @@ export const PageLayout = styled.div`
 
 export const Header = styled.header`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
   max-width: 1440px;
   margin: 0 auto;
 
@@ -24,8 +24,4 @@ export const Header = styled.header`
 export const MainContent = styled.main`
   max-width: 1440px;
   margin: 2rem auto 0;
-
-  @media (max-width: 767px) {
-    padding-bottom: 5rem;
-  }
 `;

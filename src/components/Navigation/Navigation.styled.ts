@@ -5,17 +5,8 @@ export const NavigationContainer = styled.nav`
   align-items: center;
   justify-content: space-around;
   gap: 0.25rem;
-
-  @media (max-width: 767px) {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 10;
-    padding: 0.75rem 0.25rem;
-    background: var(--color-surface);
-    border-top: 1px solid #3a3a3a;
-  }
+  width: 100%;
+  margin-top: 1rem;
 `;
 
 export const NavigationLink = styled.button<{ $active: boolean }>`
