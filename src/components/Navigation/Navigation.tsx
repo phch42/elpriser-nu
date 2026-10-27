@@ -1,8 +1,7 @@
-// src/components/Navigation/Navigation.tsx
-
 import {
   NavigationContainer,
   NavigationLink,
+  NavigationLogo,
 } from './Navigation.styled';
 
 const navigationItems = [
@@ -18,14 +17,18 @@ export type NavigationSection =
 interface NavigationProps {
   activeSection: NavigationSection;
   onNavigate: (section: NavigationSection) => void;
+  logo: string;
 }
 
 export default function Navigation({
   activeSection,
   onNavigate,
+  logo,
 }: NavigationProps) {
   return (
     <NavigationContainer aria-label="Hovednavigation">
+      <NavigationLogo src={logo} alt="ElPriser.nu" />
+
       {navigationItems.map((item) => (
         <NavigationLink
           key={item}

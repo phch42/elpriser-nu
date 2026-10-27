@@ -19,17 +19,8 @@ export const HeaderTop = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
   width: 100%;
   max-width: 480px;
-`;
-
-export const Logo = styled.img`
-  display: block;
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
 `;
 
 export const SettingsButton = styled.button`

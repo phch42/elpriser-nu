@@ -8,7 +8,6 @@ import OverviewPage from '../pages/OverviewPage';
 import {
   Header,
   HeaderTop,
-  Logo,
   SettingsButton,
   MainContent,
   PageLayout,
@@ -23,11 +22,10 @@ export default function MainLayout() {
     <PageLayout>
       <Header>
         <HeaderTop>
-          <Logo src={mainIcon} alt="ElPriser.nu" />
-
           <Navigation
             activeSection={activeSection}
             onNavigate={setActiveSection}
+            logo={mainIcon}
           />
         </HeaderTop>
 

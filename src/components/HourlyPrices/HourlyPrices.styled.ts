@@ -22,11 +22,11 @@ export const HourlyPriceRow = styled.div`
 export const HourlyTime = styled.span`
   color: var(--color-text);
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 400;
 `;
 
 export const HourlyPriceValue = styled.span`
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 400;
   text-align: right;
 `;

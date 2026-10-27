@@ -51,7 +51,7 @@ export const SummaryLabel = styled.span`
   margin-top: 0.75rem;
   color: var(--color-text);
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 400;
   text-align: center;
   text-transform: uppercase;
 `;
