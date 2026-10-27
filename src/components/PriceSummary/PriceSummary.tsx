@@ -1,12 +1,13 @@
 // src/components/PriceSummary/PriceSummary.tsx
-
-import type { HourlyPrice } from '../../modules/prices/price.types';
 import { getDailyPriceSummary } from '../../modules/prices/priceCalculations';
+import type { HourlyPrice } from '../../modules/prices/price.types';
 import {
   SummaryContainer,
   SummaryCard,
-  SummaryLabel,
+  PriceCircle,
   SummaryPrice,
+  PriceUnit,
+  SummaryLabel,
 } from './PriceSummary.styled';
 
 interface PriceSummaryProps {
@@ -23,17 +24,25 @@ export default function PriceSummary({ prices }: PriceSummaryProps) {
   return (
     <SummaryContainer>
       <SummaryCard>
-        <SummaryLabel>Laveste pris i dag</SummaryLabel>
-        <SummaryPrice>
-          {summary.lowestPrice.DKK_per_kWh.toFixed(2)} kr.
-        </SummaryPrice>
+        <PriceCircle>
+          <SummaryPrice>
+            {summary.lowestPrice.DKK_per_kWh.toFixed(2)}
+          </SummaryPrice>
+          <PriceUnit>PR. KWH</PriceUnit>
+        </PriceCircle>
+
+        <SummaryLabel>Laveste pris</SummaryLabel>
       </SummaryCard>
 
       <SummaryCard>
-        <SummaryLabel>Højeste pris i dag</SummaryLabel>
-        <SummaryPrice>
-          {summary.highestPrice.DKK_per_kWh.toFixed(2)} kr.
-        </SummaryPrice>
+        <PriceCircle>
+          <SummaryPrice>
+            {summary.highestPrice.DKK_per_kWh.toFixed(2)}
+          </SummaryPrice>
+          <PriceUnit>PR. KWH</PriceUnit>
+        </PriceCircle>
+
+        <SummaryLabel>Højeste pris</SummaryLabel>
       </SummaryCard>
     </SummaryContainer>
   );

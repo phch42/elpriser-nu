@@ -1,30 +1,56 @@
-
 import styled from 'styled-components';
 
-export const SummaryContainer = styled.section`
+export const SummaryContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
+  justify-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 360px;
+  margin: 1.5rem auto;
 `;
 
 export const SummaryCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   min-width: 0;
-  padding: 1rem;
-  border-radius: 12px;
-  background: var(--color-surface);
 `;
 
-export const SummaryLabel = styled.p`
-  margin: 0 0 0.75rem;
-  color: var(--color-muted);
-  font-size: 0.8rem;
-  line-height: 1.4;
-`;
-
-export const SummaryPrice = styled.p`
-  margin: 0;
+export const PriceCircle = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 140px;
+  max-width: 100%;
+  aspect-ratio: 1;
+  border: 1px dashed var(--color-accent);
+  border-radius: 50%;
   color: var(--color-text);
-  font-size: 1.25rem;
+`;
+
+export const SummaryPrice = styled.span`
+  font-size: 1.5rem;
   font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
   overflow-wrap: anywhere;
+`;
+
+export const PriceUnit = styled.span`
+  margin-top: 0.25rem;
+  color: var(--color-muted);
+  font-size: 0.7rem;
+  font-weight: 500;
+`;
+
+export const SummaryLabel = styled.span`
+  margin-top: 0.75rem;
+  color: var(--color-text);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
 `;
