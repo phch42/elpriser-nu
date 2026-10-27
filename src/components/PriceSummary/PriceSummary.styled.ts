@@ -28,6 +28,7 @@ export const PriceCircle = styled.div`
   aspect-ratio: 1;
   border: 1px dashed var(--color-accent);
   border-radius: 50%;
+  background: #201e1e;
   color: var(--color-text);
 `;
 

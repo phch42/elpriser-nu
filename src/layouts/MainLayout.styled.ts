@@ -3,12 +3,14 @@ import styled from 'styled-components';
 export const PageLayout = styled.div`
   min-height: 100vh;
   padding: 1.5rem 1rem;
-  background: var(--color-background);
+  background: #27282b;
 `;
 
 export const Header = styled.header`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
   max-width: 1440px;
   margin: 0 auto;
 `;
@@ -16,8 +18,10 @@ export const Header = styled.header`
 export const HeaderTop = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
   width: 100%;
+  max-width: 480px;
 `;
 
 export const Logo = styled.img`

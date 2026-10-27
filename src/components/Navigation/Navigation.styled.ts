@@ -8,6 +8,9 @@ export const NavigationContainer = styled.nav`
   flex: 1;
   min-width: 0;
   margin-top: 0;
+  padding: 0.25rem;
+  border-radius: 10px;
+  background: #201e1e;
 `;
 
 export const NavigationLink = styled.button<{ $active: boolean }>`
