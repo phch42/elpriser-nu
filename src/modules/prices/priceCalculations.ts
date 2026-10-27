@@ -22,9 +22,13 @@ export function getDailyPriceSummary(prices: HourlyPrice[]): DailyPriceSummary |
     return { lowestPrice, highestPrice };
 }
 
-export function getPriceColor(price: number, lowestPrice: number, highestPrice: number): string {
+export function getPriceColor(
+    price: number,
+    lowestPrice: number,
+    highestPrice: number
+): string {
     if (highestPrice === lowestPrice) {
-        return `rgb(128, 128, 0)`;
+        return 'rgb(128, 128, 0)';
     }
 
     const ratio = (price - lowestPrice) / (highestPrice - lowestPrice);
@@ -32,9 +36,5 @@ export function getPriceColor(price: number, lowestPrice: number, highestPrice: 
     const red = Math.round(255 * ratio);
     const green = Math.round(255 * (1 - ratio));
 
-    return `rgb${red}, ${green}, 0`;
-}
-
-export function calculatePriceWithVat(price: number, includeVat: boolean): number {
-    return includeVat ? price * 1.25 : price;
+    return `rgb(${red}, ${green}, 0)`;
 }
