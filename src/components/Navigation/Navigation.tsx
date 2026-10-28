@@ -1,45 +1,27 @@
+// src/components/Navigation/Navigation.tsx
 import {
   NavigationContainer,
   NavigationLink,
   NavigationLinks,
-  NavigationLogo,
 } from './Navigation.styled';
 
 const navigationItems = [
-  'Oversigt',
-  'Lige nu',
-  'Historik',
+  { label: 'Oversigt', to: '/' },
+  { label: 'Lige nu', to: '/current' },
+  { label: 'Historik', to: '/history' },
 ] as const;
 
-export type NavigationSection =
-  | (typeof navigationItems)[number]
-  | 'Indstillinger';
-
-interface NavigationProps {
-  activeSection: NavigationSection;
-  onNavigate: (section: NavigationSection) => void;
-  logo: string;
-}
-
-export default function Navigation({
-  activeSection,
-  onNavigate,
-  logo,
-}: NavigationProps) {
+export default function Navigation() {
   return (
     <NavigationContainer aria-label="Hovednavigation">
-      <NavigationLogo src={logo} alt="ElPriser.nu" />
-
       <NavigationLinks>
         {navigationItems.map((item) => (
           <NavigationLink
-            key={item}
-            type="button"
-            $active={activeSection === item}
-            aria-current={activeSection === item ? 'page' : undefined}
-            onClick={() => onNavigate(item)}
+            key={item.to}
+            to={item.to}
+            end={item.to === '/'}
           >
-            {item}
+            {item.label}
           </NavigationLink>
         ))}
       </NavigationLinks>

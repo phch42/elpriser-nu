@@ -1,14 +1,8 @@
 // src/layouts/MainLayout.tsx
-// src/layouts/MainLayout.tsx
-import { useState } from 'react';
+import { Outlet, useNavigate } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
-import Navigation, {
-  type NavigationSection,
-} from '../components/Navigation/Navigation';
-import OverviewPage from '../pages/OverviewPage';
-import CurrentPricePage from '../pages/CurrentPricePage/CurrentPricePage';
-import HistoryPage from '../pages/HistoryPage/HistoryPage';
+import Navigation from '../components/Navigation/Navigation';
 import {
   Header,
   HeaderTop,
@@ -16,44 +10,31 @@ import {
   MainContent,
   PageLayout,
 } from './MainLayout.styled';
+import { NavigationLogo } from '../components/Navigation/Navigation.styled';
 import mainIcon from '../assets/appIcons/mainIcon.svg';
 
 export default function MainLayout() {
-  const [activeSection, setActiveSection] =
-    useState<NavigationSection>('Oversigt');
+  const navigate = useNavigate();
 
   return (
     <PageLayout>
       <Header>
         <HeaderTop>
-          <Navigation
-            activeSection={activeSection}
-            onNavigate={setActiveSection}
-            logo={mainIcon}
-          />
+          <NavigationLogo src={mainIcon} alt="ElPriser.nu" />
+          <Navigation />
         </HeaderTop>
 
         <SettingsButton
           type="button"
           aria-label="Åbn indstillinger"
-          onClick={() => setActiveSection('Indstillinger')}
+          onClick={() => navigate('/settings')}
         >
           <FontAwesomeIcon icon={faGear} />
         </SettingsButton>
       </Header>
 
       <MainContent>
-        {activeSection === 'Oversigt' && <OverviewPage />}
-
-        {activeSection === 'Lige nu' && <CurrentPricePage />}
-
-        {activeSection === 'Historik' && <HistoryPage />}
-
-        {activeSection === 'Indstillinger' && (
-          <section>
-            <h2>Indstillinger</h2>
-          </section>
-        )}
+        <Outlet />
       </MainContent>
     </PageLayout>
   );
