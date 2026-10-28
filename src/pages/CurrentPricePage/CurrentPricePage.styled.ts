@@ -13,8 +13,11 @@ export const CurrentPriceContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
   gap: 1.25rem;
-  margin: 2rem auto 0;
+  margin: 6rem auto 0;
 `;
 
 export const CurrentPriceCircle = styled.div`
