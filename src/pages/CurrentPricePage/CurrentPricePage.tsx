@@ -4,6 +4,11 @@ import { usePrices } from '../../hooks/usePrices';
 import type { PriceRegion } from '../../modules/prices/price.types';
 import {
   CurrentPriceHeading,
+  CurrentPriceContainer,
+  CurrentPriceCircle,
+  CurrentPriceValue,
+  CurrentPriceUnit,
+  CurrentPriceTime,
 } from './CurrentPricePage.styled';
 
 export default function CurrentPricePage() {
@@ -31,42 +36,42 @@ export default function CurrentPricePage() {
       {error && <p>{error}</p>}
 
       {!isLoading && !error && (
-        <div>
-          {currentPrice ? (
-            <>
-              <p>
+        currentPrice ? (
+          <CurrentPriceContainer>
+            <CurrentPriceCircle>
+              <CurrentPriceValue>
                 {currentPrice.DKK_per_kWh.toLocaleString('da-DK', {
                   minimumFractionDigits: 3,
                   maximumFractionDigits: 3,
                 })}{' '}
                 KR
-              </p>
+              </CurrentPriceValue>
 
-              <p>PR. KWH</p>
+              <CurrentPriceUnit>PR. KWH</CurrentPriceUnit>
+            </CurrentPriceCircle>
 
-              <p>
-                Kl.{' '}
-                {new Date(currentPrice.time_start).toLocaleTimeString(
-                  'da-DK',
-                  {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                  }
-                )}
-                {' – '}
-                {new Date(currentPrice.time_end).toLocaleTimeString(
-                  'da-DK',
-                  {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                  }
-                )}
-              </p>
-            </>
-          ) : (
-            <p>Ingen pris tilgængelig for den aktuelle time.</p>
-          )}
-        </div>
+            <CurrentPriceTime>
+              Kl.{' '}
+              {new Date(currentPrice.time_start).toLocaleTimeString(
+                'da-DK',
+                {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                }
+              )}
+              {' – '}
+              {new Date(currentPrice.time_end).toLocaleTimeString(
+                'da-DK',
+                {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                }
+              )}
+            </CurrentPriceTime>
+          </CurrentPriceContainer>
+        ) : (
+          <p>Ingen pris tilgængelig for den aktuelle time.</p>
+        )
       )}
     </section>
   );
