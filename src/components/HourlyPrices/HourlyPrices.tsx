@@ -29,6 +29,7 @@ export default function HourlyPrices({ prices }: HourlyPricesProps) {
       {prices.map((price) => (
         <HourlyPriceRow key={price.time_start}>
           <HourlyTime>
+            kl.{' '}
             {new Date(price.time_start).toLocaleTimeString('da-DK', {
               hour: '2-digit',
               minute: '2-digit',

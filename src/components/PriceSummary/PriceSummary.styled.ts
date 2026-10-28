@@ -22,8 +22,8 @@ export const PriceCircle = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 140px;
-  height: 140px;
+  width: 100px;
+  height: 100px;
   max-width: 100%;
   aspect-ratio: 1;
   border: 1px dashed var(--color-accent);
