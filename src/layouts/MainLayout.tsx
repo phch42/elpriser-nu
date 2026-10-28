@@ -1,4 +1,5 @@
 // src/layouts/MainLayout.tsx
+// src/layouts/MainLayout.tsx
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
@@ -7,6 +8,7 @@ import Navigation, {
 } from '../components/Navigation/Navigation';
 import OverviewPage from '../pages/OverviewPage';
 import CurrentPricePage from '../pages/CurrentPricePage/CurrentPricePage';
+import HistoryPage from '../pages/HistoryPage/HistoryPage';
 import {
   Header,
   HeaderTop,
@@ -45,11 +47,7 @@ export default function MainLayout() {
 
         {activeSection === 'Lige nu' && <CurrentPricePage />}
 
-        {activeSection === 'Historik' && (
-          <section>
-            <h2>Historik</h2>
-          </section>
-        )}
+        {activeSection === 'Historik' && <HistoryPage />}
 
         {activeSection === 'Indstillinger' && (
           <section>
