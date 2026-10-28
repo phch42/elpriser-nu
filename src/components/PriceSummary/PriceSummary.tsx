@@ -1,4 +1,4 @@
-// src/components/PriceSummary/PriceSummary.tsx
+
 import { getDailyPriceSummary } from '../../modules/prices/priceCalculations';
 import type { HourlyPrice } from '../../modules/prices/price.types';
 import {
@@ -26,8 +26,11 @@ export default function PriceSummary({ prices }: PriceSummaryProps) {
       <SummaryCard>
         <PriceCircle>
           <SummaryPrice>
-            {summary.lowestPrice.DKK_per_kWh.toFixed(2)}
-            {' KR '}
+            {summary.lowestPrice.DKK_per_kWh.toLocaleString('da-DK', {
+              minimumFractionDigits: 3,
+              maximumFractionDigits: 3,
+            })}{' '}
+            KR
           </SummaryPrice>
           <PriceUnit>PR. KWH</PriceUnit>
         </PriceCircle>
@@ -38,8 +41,11 @@ export default function PriceSummary({ prices }: PriceSummaryProps) {
       <SummaryCard>
         <PriceCircle>
           <SummaryPrice>
-            {summary.highestPrice.DKK_per_kWh.toFixed(2)}
-            {' KR '}
+            {summary.highestPrice.DKK_per_kWh.toLocaleString('da-DK', {
+              minimumFractionDigits: 3,
+              maximumFractionDigits: 3,
+            })}{' '}
+            KR
           </SummaryPrice>
           <PriceUnit>PR. KWH</PriceUnit>
         </PriceCircle>
