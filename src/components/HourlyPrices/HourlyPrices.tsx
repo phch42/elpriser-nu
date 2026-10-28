@@ -1,3 +1,4 @@
+// src/components/HourlyPrices/HourlyPrices.tsx
 import type { HourlyPrice } from '../../modules/prices/price.types';
 import { getPriceColor } from '../../modules/prices/priceCalculations';
 import {
@@ -16,6 +17,8 @@ export default function HourlyPrices({ prices }: HourlyPricesProps) {
     return null;
   }
 
+  const now = new Date();
+
   const lowestPrice = Math.min(
     ...prices.map((price) => price.DKK_per_kWh)
   );
@@ -24,9 +27,30 @@ export default function HourlyPrices({ prices }: HourlyPricesProps) {
     ...prices.map((price) => price.DKK_per_kWh)
   );
 
+  const sortedPrices = [...prices].sort(
+    (a, b) =>
+      new Date(a.time_start).getTime() -
+      new Date(b.time_start).getTime()
+  );
+
+  const currentHourIndex = sortedPrices.findIndex((price) => {
+    const start = new Date(price.time_start);
+    const end = new Date(price.time_end);
+
+    return now >= start && now < end;
+  });
+
+  const orderedPrices =
+    currentHourIndex >= 0
+      ? [
+          ...sortedPrices.slice(currentHourIndex),
+          ...sortedPrices.slice(0, currentHourIndex),
+        ]
+      : sortedPrices;
+
   return (
     <HourlyPricesContainer aria-label="Timepriser">
-      {prices.map((price) => (
+      {orderedPrices.map((price) => (
         <HourlyPriceRow key={price.time_start}>
           <HourlyTime>
             kl.{' '}
@@ -45,7 +69,11 @@ export default function HourlyPrices({ prices }: HourlyPricesProps) {
               ),
             }}
           >
-            {price.DKK_per_kWh.toFixed(2)} kr.
+            {price.DKK_per_kWh.toLocaleString('da-DK', {
+              minimumFractionDigits: 3,
+              maximumFractionDigits: 3,
+            })}{' '}
+            kr.
           </HourlyPriceValue>
         </HourlyPriceRow>
       ))}

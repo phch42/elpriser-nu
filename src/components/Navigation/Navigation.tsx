@@ -1,6 +1,7 @@
 import {
   NavigationContainer,
   NavigationLink,
+  NavigationLinks,
   NavigationLogo,
 } from './Navigation.styled';
 
@@ -29,17 +30,19 @@ export default function Navigation({
     <NavigationContainer aria-label="Hovednavigation">
       <NavigationLogo src={logo} alt="ElPriser.nu" />
 
-      {navigationItems.map((item) => (
-        <NavigationLink
-          key={item}
-          type="button"
-          $active={activeSection === item}
-          aria-current={activeSection === item ? 'page' : undefined}
-          onClick={() => onNavigate(item)}
-        >
-          {item}
-        </NavigationLink>
-      ))}
+      <NavigationLinks>
+        {navigationItems.map((item) => (
+          <NavigationLink
+            key={item}
+            type="button"
+            $active={activeSection === item}
+            aria-current={activeSection === item ? 'page' : undefined}
+            onClick={() => onNavigate(item)}
+          >
+            {item}
+          </NavigationLink>
+        ))}
+      </NavigationLinks>
     </NavigationContainer>
   );
 }

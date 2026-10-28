@@ -33,8 +33,8 @@ export const PriceCircle = styled.div`
 `;
 
 export const SummaryPrice = styled.span`
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 400;
   line-height: 1.2;
   text-align: center;
   overflow-wrap: anywhere;

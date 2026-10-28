@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const PageLayout = styled.div`
   min-height: 100vh;
-  padding: 1.5rem 1rem;
+  padding: 0;
   background: #27282b;
 `;
 
@@ -20,7 +20,6 @@ export const HeaderTop = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 480px;
 `;
 
 export const SettingsButton = styled.button`
@@ -35,7 +34,7 @@ export const SettingsButton = styled.button`
   border: none;
   background: transparent;
   color: var(--color-accent);
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 
   &:hover {
     color: var(--color-text);
@@ -51,4 +50,5 @@ export const SettingsButton = styled.button`
 export const MainContent = styled.main`
   max-width: 1440px;
   margin: 1.5rem auto 0;
+  padding: 0 1rem;
 `;

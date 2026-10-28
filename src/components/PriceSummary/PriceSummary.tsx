@@ -27,6 +27,7 @@ export default function PriceSummary({ prices }: PriceSummaryProps) {
         <PriceCircle>
           <SummaryPrice>
             {summary.lowestPrice.DKK_per_kWh.toFixed(2)}
+            {' KR '}
           </SummaryPrice>
           <PriceUnit>PR. KWH</PriceUnit>
         </PriceCircle>
@@ -38,6 +39,7 @@ export default function PriceSummary({ prices }: PriceSummaryProps) {
         <PriceCircle>
           <SummaryPrice>
             {summary.highestPrice.DKK_per_kWh.toFixed(2)}
+            {' KR '}
           </SummaryPrice>
           <PriceUnit>PR. KWH</PriceUnit>
         </PriceCircle>

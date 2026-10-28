@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const NavigationContainer = styled.nav`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 0.5rem;
   width: 100%;
   min-width: 0;
@@ -15,9 +15,19 @@ export const NavigationContainer = styled.nav`
 export const NavigationLogo = styled.img`
   display: block;
   flex-shrink: 0;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
+  margin-left: 1rem;
   object-fit: contain;
+`;
+
+export const NavigationLinks = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  min-width: 0;
+  margin-right: 0.75rem;
 `;
 
 export const NavigationLink = styled.button<{ $active: boolean }>`
@@ -43,9 +53,5 @@ export const NavigationLink = styled.button<{ $active: boolean }>`
   &:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: -2px;
-  }
-
-  &:first-of-type {
-    margin-left: auto;
   }
 `;
