@@ -3,6 +3,7 @@ import {
   NavigationContainer,
   NavigationLink,
   NavigationLinks,
+  NavigationLogo,
 } from './Navigation.styled';
 
 const navigationItems = [
@@ -14,6 +15,11 @@ const navigationItems = [
 export default function Navigation() {
   return (
     <NavigationContainer aria-label="Hovednavigation">
+      <NavigationLogo
+        src="/src/assets/appIcons/mainIcon.svg"
+        alt="ElPriser.nu"
+      />
+
       <NavigationLinks>
         {navigationItems.map((item) => (
           <NavigationLink

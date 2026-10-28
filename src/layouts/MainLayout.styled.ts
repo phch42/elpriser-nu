@@ -18,7 +18,7 @@ export const Header = styled.header`
 export const HeaderTop = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
 `;
 

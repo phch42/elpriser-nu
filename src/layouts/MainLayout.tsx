@@ -10,8 +10,6 @@ import {
   MainContent,
   PageLayout,
 } from './MainLayout.styled';
-import { NavigationLogo } from '../components/Navigation/Navigation.styled';
-import mainIcon from '../assets/appIcons/mainIcon.svg';
 
 export default function MainLayout() {
   const navigate = useNavigate();
@@ -20,7 +18,6 @@ export default function MainLayout() {
     <PageLayout>
       <Header>
         <HeaderTop>
-          <NavigationLogo src={mainIcon} alt="ElPriser.nu" />
           <Navigation />
         </HeaderTop>
 

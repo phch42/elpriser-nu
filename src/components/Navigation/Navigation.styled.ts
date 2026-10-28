@@ -4,9 +4,22 @@ import { NavLink } from 'react-router';
 export const NavigationContainer = styled.nav`
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 0.5rem;
+  width: 100%;
   min-width: 0;
+  padding: 0.25rem;
+  border-radius: 0;
+  background: #201e1e;
+`;
+
+export const NavigationLogo = styled.img`
+  display: block;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  margin-left: 1rem;
+  object-fit: contain;
 `;
 
 export const NavigationLinks = styled.div`
@@ -19,16 +32,20 @@ export const NavigationLinks = styled.div`
 `;
 
 export const NavigationLink = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex: 0 0 auto;
   min-width: 0;
   min-height: 44px;
   padding: 0.5rem 0.3rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 0;
   background: transparent;
   color: #ffffff;
   font-size: 0.85rem;
   font-weight: 700;
+  line-height: 1;
   text-decoration: none;
   text-transform: uppercase;
   white-space: nowrap;
@@ -49,13 +66,4 @@ export const NavigationLink = styled(NavLink)`
     outline: 2px solid var(--color-accent);
     outline-offset: -2px;
   }
-`;
-
-export const NavigationLogo = styled.img`
-  display: block;
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  margin-left: 1rem;
-  object-fit: contain;
 `;
