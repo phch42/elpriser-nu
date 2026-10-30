@@ -4,50 +4,58 @@ import { fetchDailyPrices } from '../modules/prices/priceApi';
 import type { HourlyPrice, PriceRegion } from '../modules/prices/price.types';
 import { useSettings } from '../context/SettingsContext';
 
-export function usePrices(date: Date, region: PriceRegion) {
-  const { settings } = useSettings();
+export function usePrices(date: Date, region: PriceRegion | '') {
+    const { settings } = useSettings();
 
-  const [prices, setPrices] = useState<HourlyPrice[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+    const [prices, setPrices] = useState<HourlyPrice[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    let isActive = true;
+    useEffect(() => {
+        let isActive = true;
 
-    async function loadPrices() {
-      setIsLoading(true);
-      setError(null);
+        async function loadPrices() {
+            if (!region) {
+                setPrices([]);
+                setIsLoading(false);
+                setError(null);
+                return;
+            }
 
-      try {
-        const data = await fetchDailyPrices(date, region);
+            setIsLoading(true);
+            setError(null);
 
-        if (isActive) {
-          const adjustedPrices = data.map((price) => ({
-            ...price,
-            DKK_per_kWh: settings.includeVat
-              ? price.DKK_per_kWh * 1.25
-              : price.DKK_per_kWh,
-          }));
+            try {
+                const data = await fetchDailyPrices(date, region);
 
-          setPrices(adjustedPrices);
+                if (isActive) {
+                    const adjustedPrices = data.map((price) => ({
+                        ...price,
+                        DKK_per_kWh: settings.includeVat
+                            ? price.DKK_per_kWh * 1.25
+                            : price.DKK_per_kWh,
+                    }));
+
+                    setPrices(adjustedPrices);
+                }
+            } catch {
+                if (isActive) {
+                    setPrices([]);
+                    setError('Failed to load electricity prices.');
+                }
+            } finally {
+                if (isActive) {
+                    setIsLoading(false);
+                }
+            }
         }
-      } catch {
-        if (isActive) {
-          setError('Failed to load electricity prices.');
-        }
-      } finally {
-        if (isActive) {
-          setIsLoading(false);
-        }
-      }
-    }
 
-    loadPrices();
+        loadPrices();
 
-    return () => {
-      isActive = false;
-    };
-  }, [date, region, settings.includeVat]);
+        return () => {
+            isActive = false;
+        };
+    }, [date, region, settings.includeVat]);
 
-  return { prices, isLoading, error };
+    return { prices, isLoading, error };
 }

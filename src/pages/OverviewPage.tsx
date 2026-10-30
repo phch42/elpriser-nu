@@ -7,26 +7,32 @@ import { useSettings } from '../context/SettingsContext';
 import { OverviewHeading } from './OverviewPage.styled';
 
 export default function OverviewPage() {
-  const { settings } = useSettings();
-  const region = settings.region;
+    const { settings } = useSettings();
+    const region = settings.region;
 
-  const today = useMemo(() => new Date(), []);
+    const today = useMemo(() => new Date(), []);
 
-  const { prices, isLoading, error } = usePrices(today, region);
+    const { prices, isLoading, error } = usePrices(today, region);
 
-  return (
-    <section>
-      <OverviewHeading>Oversigt</OverviewHeading>
+    return (
+        <section>
+            <OverviewHeading>Oversigt</OverviewHeading>
 
-      {isLoading && <p>Henter elpriser...</p>}
-      {error && <p>{error}</p>}
+            {!region ? (
+                <p>Vælg venligst en region under indstillinger.</p>
+            ) : (
+                <>
+                    {isLoading && <p>Henter elpriser...</p>}
+                    {error && <p>{error}</p>}
 
-      {!isLoading && !error && (
-        <>
-          <PriceSummary prices={prices} />
-          <HourlyPrices prices={prices} />
-        </>
-      )}
-    </section>
-  );
+                    {!isLoading && !error && (
+                        <>
+                            <PriceSummary prices={prices} />
+                            <HourlyPrices prices={prices} />
+                        </>
+                    )}
+                </>
+            )}
+        </section>
+    );
 }
