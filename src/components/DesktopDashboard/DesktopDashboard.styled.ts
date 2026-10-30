@@ -117,6 +117,25 @@ export const CurrentPriceTime = styled.p`
   text-align: center;
 `;
 
+export const OverviewListSpacer = styled.div`
+  height: 6.75rem;
+  flex-shrink: 0;
+
+  @media (max-width: 1199px) {
+    display: none;
+  }
+`;
+
+export const HistoryControls = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+
+  @media (min-width: 1200px) {
+    height: 6.75rem;
+  }
+`;
+
 export const HistoryDateContainer = styled.div`
   position: relative;
   width: 100%;

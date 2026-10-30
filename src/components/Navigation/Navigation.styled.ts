@@ -30,13 +30,14 @@ export const NavigationLogo = styled.img`
 `;
 
 export const NavigationTitle = styled.span`
+  display: none;
   color: var(--color-text);
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 700;
   white-space: nowrap;
 
   @media (min-width: 768px) {
-    font-size: 1.5rem;
+    display: inline;
   }
 `;
 

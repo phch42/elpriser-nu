@@ -1,15 +1,52 @@
 import styled from 'styled-components';
 
-export const HourlyPricesContainer = styled.div`
+interface HourlyPricesContainerProps {
+  $desktopScrollable?: boolean;
+}
+
+export const HourlyPricesContainer = styled.div<HourlyPricesContainerProps>`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   width: 100%;
   margin: 1.5rem auto;
+
+  ${({ $desktopScrollable }) =>
+    $desktopScrollable &&
+    `
+      @media (min-width: 1200px) {
+        height: 600px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding-right: 0.35rem;
+
+        scrollbar-width: thin;
+        scrollbar-color: #55565a #201e1e;
+
+        &::-webkit-scrollbar {
+          width: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: #201e1e;
+          border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: #55565a;
+          border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+          background: #77787c;
+        }
+      }
+    `}
 `;
 
 export const HourlyPriceRow = styled.div`
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;

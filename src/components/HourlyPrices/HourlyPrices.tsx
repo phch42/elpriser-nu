@@ -11,9 +11,13 @@ import {
 
 interface HourlyPricesProps {
   prices: HourlyPrice[];
+  desktopScrollable?: boolean;
 }
 
-export default function HourlyPrices({ prices }: HourlyPricesProps) {
+export default function HourlyPrices({
+  prices,
+  desktopScrollable = false,
+}: HourlyPricesProps) {
   if (prices.length === 0) {
     return null;
   }
@@ -50,7 +54,10 @@ export default function HourlyPrices({ prices }: HourlyPricesProps) {
       : sortedPrices;
 
   return (
-    <HourlyPricesContainer aria-label="Timepriser">
+    <HourlyPricesContainer
+      aria-label="Timepriser"
+      $desktopScrollable={desktopScrollable}
+    >
       {orderedPrices.map((price) => (
         <HourlyPriceRow key={price.time_start}>
           <HourlyTime>
@@ -70,8 +77,7 @@ export default function HourlyPrices({ prices }: HourlyPricesProps) {
               ),
             }}
           >
-            {price.DKK_per_kWh.toFixed(3)}{' '}
-            kr.
+            {price.DKK_per_kWh.toFixed(3)} kr.
           </HourlyPriceValue>
         </HourlyPriceRow>
       ))}

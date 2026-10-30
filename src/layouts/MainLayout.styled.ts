@@ -16,15 +16,17 @@ export const Header = styled.header`
 
 export const HeaderTop = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: stretch;
   width: 100%;
-  min-height: 52px;
-  background: #201e1e;
 
   @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     min-height: 76px;
     padding: 0 2rem;
+    background: #201e1e;
   }
 
   @media (min-width: 1200px) {
@@ -37,9 +39,10 @@ export const SettingsButton = styled.button`
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
+  align-self: flex-end;
   width: 44px;
   height: 44px;
-  margin: 0 0.75rem 0 auto;
+  margin: 0.5rem 0.75rem 0;
   padding: 0;
   border: none;
   background: transparent;
@@ -57,6 +60,7 @@ export const SettingsButton = styled.button`
   }
 
   @media (min-width: 768px) {
+    align-self: center;
     margin: 0;
     font-size: 1.75rem;
   }

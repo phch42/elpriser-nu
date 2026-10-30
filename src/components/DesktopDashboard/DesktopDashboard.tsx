@@ -14,10 +14,12 @@ import {
   CurrentPriceValue,
   CurrentPriceUnit,
   CurrentPriceTime,
+  HistoryControls,
   HistoryDateContainer,
   HistoryDateInput,
   CalendarIcon,
   SelectedDateHeading,
+  OverviewListSpacer,
   Message,
 } from './DesktopDashboard.styled';
 
@@ -73,10 +75,7 @@ export default function DesktopDashboard() {
       <DashboardSection>
         <SectionHeading>Lige nu</SectionHeading>
 
-        {todayIsLoading && (
-          <Message>Henter elpriser...</Message>
-        )}
-
+        {todayIsLoading && <Message>Henter elpriser...</Message>}
         {todayError && <Message>{todayError}</Message>}
 
         {!todayIsLoading && !todayError && (
@@ -86,7 +85,6 @@ export default function DesktopDashboard() {
                 <CurrentPriceValue>
                   {currentPrice.DKK_per_kWh.toFixed(3)} KR
                 </CurrentPriceValue>
-
                 <CurrentPriceUnit>PR. KWH</CurrentPriceUnit>
               </CurrentPriceCircle>
 
@@ -94,25 +92,17 @@ export default function DesktopDashboard() {
                 Kl.{' '}
                 {new Date(currentPrice.time_start).toLocaleTimeString(
                   'da-DK',
-                  {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                  }
+                  { hour: '2-digit', minute: '2-digit' }
                 )}
                 {' – '}
                 {new Date(currentPrice.time_end).toLocaleTimeString(
                   'da-DK',
-                  {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                  }
+                  { hour: '2-digit', minute: '2-digit' }
                 )}
               </CurrentPriceTime>
             </CurrentPriceContainer>
           ) : (
-            <Message>
-              Ingen pris tilgængelig for den aktuelle time.
-            </Message>
+            <Message>Ingen pris tilgængelig for den aktuelle time.</Message>
           )
         )}
 
@@ -124,53 +114,57 @@ export default function DesktopDashboard() {
       <DashboardSection>
         <SectionHeading>Oversigt</SectionHeading>
 
-        {todayIsLoading && (
-          <Message>Henter elpriser...</Message>
-        )}
+        <OverviewListSpacer />
 
+        {todayIsLoading && <Message>Henter elpriser...</Message>}
         {todayError && <Message>{todayError}</Message>}
 
         {!todayIsLoading && !todayError && (
-          <HourlyPrices prices={todayPrices} />
+          <HourlyPrices
+            prices={todayPrices}
+            desktopScrollable
+          />
         )}
       </DashboardSection>
 
       <DashboardSection>
         <SectionHeading>Historik</SectionHeading>
 
-        <HistoryDateContainer>
-          <HistoryDateInput
-            id="dashboard-history-date"
-            type="date"
-            aria-label="Vælg dato"
-            value={formatDateForInput(selectedDate)}
-            min={formatDateForInput(oldestDate)}
-            max={formatDateForInput(today)}
-            onChange={handleDateChange}
-          />
+        <HistoryControls>
+          <HistoryDateContainer>
+            <HistoryDateInput
+              id="dashboard-history-date"
+              type="date"
+              aria-label="Vælg dato"
+              value={formatDateForInput(selectedDate)}
+              min={formatDateForInput(oldestDate)}
+              max={formatDateForInput(today)}
+              onChange={handleDateChange}
+            />
 
-          <CalendarIcon>
-            <FontAwesomeIcon icon={faCalendarDays} />
-          </CalendarIcon>
-        </HistoryDateContainer>
+            <CalendarIcon>
+              <FontAwesomeIcon icon={faCalendarDays} />
+            </CalendarIcon>
+          </HistoryDateContainer>
 
-        <SelectedDateHeading>
-          Elpriser for{' '}
-          {selectedDate.toLocaleDateString('da-DK', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
-          })}
-        </SelectedDateHeading>
+          <SelectedDateHeading>
+            Elpriser for{' '}
+            {selectedDate.toLocaleDateString('da-DK', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+            })}
+          </SelectedDateHeading>
+        </HistoryControls>
 
-        {historyIsLoading && (
-          <Message>Henter elpriser...</Message>
-        )}
-
+        {historyIsLoading && <Message>Henter elpriser...</Message>}
         {historyError && <Message>{historyError}</Message>}
 
         {!historyIsLoading && !historyError && (
-          <HourlyPrices prices={historyPrices} />
+          <HourlyPrices
+            prices={historyPrices}
+            desktopScrollable
+          />
         )}
       </DashboardSection>
     </DashboardContainer>
