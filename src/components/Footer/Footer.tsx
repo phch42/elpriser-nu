@@ -1,4 +1,6 @@
 // src/components/Footer/Footer.tsx
+
+import { useSettings } from '../../context/SettingsContext';
 import {
   FooterContainer,
   FooterText,
@@ -6,6 +8,11 @@ import {
 } from './Footer.styled';
 
 export default function Footer() {
+  const { settings } = useSettings();
+
+  const regionName =
+    settings.region === 'DK2' ? 'Øst Danmark' : 'Vest Danmark';
+
   return (
     <FooterContainer>
       <FooterText>
@@ -13,7 +20,7 @@ export default function Footer() {
       </FooterText>
 
       <FooterText>
-        Du vises lige nu priserne for <Highlight>Øst Danmark</Highlight>
+        Du vises lige nu priserne for <Highlight>{regionName}</Highlight>
       </FooterText>
     </FooterContainer>
   );
