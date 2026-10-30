@@ -1,4 +1,5 @@
 // src/pages/CurrentPricePage/CurrentPricePage.tsx
+
 import { useMemo } from 'react';
 import { usePrices } from '../../hooks/usePrices';
 import type { PriceRegion } from '../../modules/prices/price.types';
@@ -40,10 +41,7 @@ export default function CurrentPricePage() {
           <CurrentPriceContainer>
             <CurrentPriceCircle>
               <CurrentPriceValue>
-                {currentPrice.DKK_per_kWh.toLocaleString('da-DK', {
-                  minimumFractionDigits: 3,
-                  maximumFractionDigits: 3,
-                })}{' '}
+                {currentPrice.DKK_per_kWh.toFixed(3)}{' '}
                 KR
               </CurrentPriceValue>
 
