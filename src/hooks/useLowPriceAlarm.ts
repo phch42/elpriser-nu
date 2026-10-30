@@ -1,18 +1,30 @@
 // src/hooks/useLowPriceAlarm.ts
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePrices } from './usePrices';
 import { useSettings } from '../context/SettingsContext';
 
 export function useLowPriceAlarm() {
     const { settings } = useSettings();
-    const today = useMemo(() => new Date(), []);
+
+    const [today, setToday] = useState(() => new Date());
     const [now, setNow] = useState(() => new Date());
 
     const { prices } = usePrices(today, settings.region);
 
     useEffect(() => {
         const interval = window.setInterval(() => {
-            setNow(new Date());
+            const currentTime = new Date();
+
+            setNow(currentTime);
+
+            setToday((previousDate) => {
+                const isSameDay =
+                    previousDate.getFullYear() === currentTime.getFullYear() &&
+                    previousDate.getMonth() === currentTime.getMonth() &&
+                    previousDate.getDate() === currentTime.getDate();
+
+                return isSameDay ? previousDate : currentTime;
+            });
         }, 30_000);
 
         return () => window.clearInterval(interval);
