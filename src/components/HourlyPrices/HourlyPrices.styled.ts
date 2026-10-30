@@ -20,25 +20,10 @@ export const HourlyPricesContainer = styled.div<HourlyPricesContainerProps>`
         overflow-y: auto;
         padding-right: 0.35rem;
 
-        scrollbar-width: thin;
-        scrollbar-color: #55565a #201e1e;
+        scrollbar-width: none;
 
         &::-webkit-scrollbar {
-          width: 6px;
-        }
-
-        &::-webkit-scrollbar-track {
-          background: #201e1e;
-          border-radius: 10px;
-        }
-
-        &::-webkit-scrollbar-thumb {
-          background: #55565a;
-          border-radius: 10px;
-        }
-
-        &::-webkit-scrollbar-thumb:hover {
-          background: #77787c;
+          display: none;
         }
       }
     `}
