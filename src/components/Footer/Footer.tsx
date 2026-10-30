@@ -10,7 +10,11 @@ export default function Footer() {
   const { settings } = useSettings();
 
   const regionName =
-    settings.region === 'DK2' ? 'Øst Danmark' : 'Vest Danmark';
+    settings.region === 'DK2'
+      ? 'Øst Danmark'
+      : settings.region === 'DK1'
+        ? 'Vest Danmark'
+        : null;
 
   const vatStatus = settings.includeVat ? 'inkl. moms' : 'ex. moms';
 
@@ -21,7 +25,13 @@ export default function Footer() {
       </FooterText>
 
       <FooterText>
-        Du vises lige nu priserne for <Highlight>{regionName}</Highlight>
+        {regionName ? (
+          <>
+            Du vises lige nu priserne for <Highlight>{regionName}</Highlight>
+          </>
+        ) : (
+          'Vælg en region under indstillinger for at se elpriser.'
+        )}
       </FooterText>
     </FooterContainer>
   );
