@@ -1,5 +1,5 @@
 // src/pages/SettingsPage/SettingsPage.tsx
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   SettingsHeading,
   SettingsContent,
@@ -11,9 +11,46 @@ import {
   RegionSelect,
 } from './SettingsPage.styled';
 
+interface SavedSettings {
+  includeVat: boolean;
+  lowPriceAlarm: boolean;
+}
+
+const SETTINGS_KEY = 'elprisen-settings';
+
+function loadSettings(): SavedSettings {
+  try {
+    const savedSettings = localStorage.getItem(SETTINGS_KEY);
+
+    if (savedSettings) {
+      return {
+        includeVat: JSON.parse(savedSettings).includeVat ?? false,
+        lowPriceAlarm: JSON.parse(savedSettings).lowPriceAlarm ?? true,
+      };
+    }
+  } catch {
+    console.warn('Could not load saved settings.');
+  }
+
+  return {
+    includeVat: false,
+    lowPriceAlarm: true,
+  };
+}
+
 export default function SettingsPage() {
-  const [includeVat, setIncludeVat] = useState(false);
-  const [lowPriceAlarm, setLowPriceAlarm] = useState(true);
+  const [settings, setSettings] = useState<SavedSettings>(loadSettings);
+
+  useEffect(() => {
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+  }, [settings]);
+
+  function toggleSetting(setting: keyof SavedSettings) {
+    setSettings((current) => ({
+      ...current,
+      [setting]: !current[setting],
+    }));
+  }
 
   return (
     <SettingsContent>
@@ -29,11 +66,11 @@ export default function SettingsPage() {
             id="include-vat"
             type="button"
             role="switch"
-            aria-checked={includeVat}
+            aria-checked={settings.includeVat}
             aria-label="Priser inkl. moms"
-            onClick={() => setIncludeVat((current) => !current)}
+            onClick={() => toggleSetting('includeVat')}
           >
-            <ToggleTrack $enabled={includeVat} />
+            <ToggleTrack $enabled={settings.includeVat} />
           </ToggleButton>
         </SettingRow>
 
@@ -46,11 +83,11 @@ export default function SettingsPage() {
             id="low-price-alarm"
             type="button"
             role="switch"
-            aria-checked={lowPriceAlarm}
+            aria-checked={settings.lowPriceAlarm}
             aria-label="Laveste pris alarm"
-            onClick={() => setLowPriceAlarm((current) => !current)}
+            onClick={() => toggleSetting('lowPriceAlarm')}
           >
-            <ToggleTrack $enabled={lowPriceAlarm} />
+            <ToggleTrack $enabled={settings.lowPriceAlarm} />
           </ToggleButton>
         </SettingRow>
 
