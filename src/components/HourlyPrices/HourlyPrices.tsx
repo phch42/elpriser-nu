@@ -1,4 +1,5 @@
 // src/components/HourlyPrices/HourlyPrices.tsx
+
 import type { HourlyPrice } from '../../modules/prices/price.types';
 import { getPriceColor } from '../../modules/prices/priceCalculations';
 import {
@@ -69,10 +70,7 @@ export default function HourlyPrices({ prices }: HourlyPricesProps) {
               ),
             }}
           >
-            {price.DKK_per_kWh.toLocaleString('da-DK', {
-              minimumFractionDigits: 3,
-              maximumFractionDigits: 3,
-            })}{' '}
+            {price.DKK_per_kWh.toFixed(3)}{' '}
             kr.
           </HourlyPriceValue>
         </HourlyPriceRow>
