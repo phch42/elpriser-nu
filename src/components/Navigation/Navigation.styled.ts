@@ -13,13 +13,31 @@ export const NavigationContainer = styled.nav`
   background: #201e1e;
 `;
 
+export const NavigationBrand = styled.div`
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.75rem;
+  margin-left: 1rem;
+`;
+
 export const NavigationLogo = styled.img`
   display: block;
   flex-shrink: 0;
   width: 44px;
   height: 44px;
-  margin-left: 1rem;
   object-fit: contain;
+`;
+
+export const NavigationTitle = styled.span`
+  color: var(--color-text);
+  font-size: 1.2rem;
+  font-weight: 700;
+  white-space: nowrap;
+
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const NavigationLinks = styled.div`
@@ -29,6 +47,10 @@ export const NavigationLinks = styled.div`
   gap: 0.5rem;
   min-width: 0;
   margin-right: 0.75rem;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
 `;
 
 export const NavigationLink = styled(NavLink)`

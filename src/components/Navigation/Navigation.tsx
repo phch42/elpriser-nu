@@ -1,9 +1,11 @@
 // src/components/Navigation/Navigation.tsx
 import {
   NavigationContainer,
-  NavigationLink,
-  NavigationLinks,
+  NavigationBrand,
   NavigationLogo,
+  NavigationTitle,
+  NavigationLinks,
+  NavigationLink,
 } from './Navigation.styled';
 
 const navigationItems = [
@@ -15,10 +17,13 @@ const navigationItems = [
 export default function Navigation() {
   return (
     <NavigationContainer aria-label="Hovednavigation">
-      <NavigationLogo
-        src="/src/assets/appIcons/mainIcon.svg"
-        alt="ElPriser.nu"
-      />
+      <NavigationBrand>
+        <NavigationLogo
+          src="/src/assets/appIcons/mainIcon.svg"
+          alt="ELPrisen.nu"
+        />
+        <NavigationTitle>ELPrisen.nu</NavigationTitle>
+      </NavigationBrand>
 
       <NavigationLinks>
         {navigationItems.map((item) => (

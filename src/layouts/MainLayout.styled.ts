@@ -9,29 +9,37 @@ export const PageLayout = styled.div`
 `;
 
 export const Header = styled.header`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 100%;
-  max-width: 1440px;
+  max-width: 1600px;
   margin: 0 auto;
 `;
 
 export const HeaderTop = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   width: 100%;
+  min-height: 52px;
+  background: #201e1e;
+
+  @media (min-width: 768px) {
+    min-height: 76px;
+    padding: 0 2rem;
+  }
+
+  @media (min-width: 1200px) {
+    padding: 0 3rem;
+  }
 `;
 
 export const SettingsButton = styled.button`
-  align-self: flex-end;
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   width: 44px;
   height: 44px;
-  margin-top: 0.5rem;
+  margin: 0 0.75rem 0 auto;
   padding: 0;
   border: none;
   background: transparent;
@@ -47,12 +55,27 @@ export const SettingsButton = styled.button`
     outline-offset: 2px;
     border-radius: 6px;
   }
+
+  @media (min-width: 768px) {
+    margin: 0;
+    font-size: 1.75rem;
+  }
 `;
 
 export const MainContent = styled.main`
   flex: 1;
   width: 100%;
-  max-width: 1440px;
+  max-width: 1600px;
   margin: 1.5rem auto 0;
   padding: 0 1rem;
+
+  @media (min-width: 768px) {
+    margin-top: 1.5rem;
+    padding: 0 2rem;
+  }
+
+  @media (min-width: 1200px) {
+    margin-top: 2rem;
+    padding: 0 3rem;
+  }
 `;
