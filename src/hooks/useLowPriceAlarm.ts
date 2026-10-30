@@ -44,36 +44,29 @@ export function useLowPriceAlarm() {
             return;
         }
 
+        const priceToNotify = cheapestPrice;
+
         const notificationKey = [
             'elprisen-lowest-price',
             settings.region,
-            cheapestPrice.time_start,
+            priceToNotify.time_start,
         ].join('-');
 
         if (localStorage.getItem(notificationKey)) {
             return;
         }
 
-        // Mark this period before showing the notification
-        // to prevent duplicate notifications.
         localStorage.setItem(notificationKey, 'shown');
-
-        const title = 'Laveste elpris nu';
-        const body = `Elprisen er ${cheapestPrice.DKK_per_kWh.toFixed(3)} kr./kWh.`;
 
         async function showNotification() {
             try {
-                if ('serviceWorker' in navigator) {
-                    const registration = await navigator.serviceWorker.ready;
+                const registration = await navigator.serviceWorker.ready;
 
-                    await registration.showNotification(title, {
-                        body,
-                        tag: notificationKey,
-                        icon: '/icons/android-launchericon-192-192.png',
-                    });
-                } else {
-                    new Notification(title, { body });
-                }
+                await registration.showNotification('Laveste elpris nu', {
+                    body: `Elprisen er ${priceToNotify.DKK_per_kWh.toFixed(3)} kr./kWh.`,
+                    tag: notificationKey,
+                    icon: '/icons/android-launchericon-192-192.png',
+                });
             } catch (error) {
                 console.error('Could not show price notification:', error);
             }
