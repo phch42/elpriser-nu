@@ -1,7 +1,8 @@
 // src/pages/SettingsPage/SettingsPage.tsx
+import { useState } from 'react';
 import {
-  SettingsContent,
   SettingsHeading,
+  SettingsContent,
   SettingsOptions,
   SettingRow,
   SettingLabel,
@@ -11,6 +12,9 @@ import {
 } from './SettingsPage.styled';
 
 export default function SettingsPage() {
+  const [includeVat, setIncludeVat] = useState(false);
+  const [lowPriceAlarm, setLowPriceAlarm] = useState(true);
+
   return (
     <SettingsContent>
       <SettingsHeading>Indstillinger</SettingsHeading>
@@ -24,10 +28,12 @@ export default function SettingsPage() {
           <ToggleButton
             id="include-vat"
             type="button"
+            role="switch"
+            aria-checked={includeVat}
             aria-label="Priser inkl. moms"
-            aria-pressed={false}
+            onClick={() => setIncludeVat((current) => !current)}
           >
-            <ToggleTrack $enabled={false} />
+            <ToggleTrack $enabled={includeVat} />
           </ToggleButton>
         </SettingRow>
 
@@ -39,10 +45,12 @@ export default function SettingsPage() {
           <ToggleButton
             id="low-price-alarm"
             type="button"
+            role="switch"
+            aria-checked={lowPriceAlarm}
             aria-label="Laveste pris alarm"
-            aria-pressed={true}
+            onClick={() => setLowPriceAlarm((current) => !current)}
           >
-            <ToggleTrack $enabled={true} />
+            <ToggleTrack $enabled={lowPriceAlarm} />
           </ToggleButton>
         </SettingRow>
 
