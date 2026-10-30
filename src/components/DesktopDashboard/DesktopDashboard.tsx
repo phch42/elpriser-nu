@@ -23,7 +23,7 @@ import {
   OverviewListSpacer,
   Message,
 } from './DesktopDashboard.styled';
-
+  
 export default function DesktopDashboard() {
   const { settings } = useSettings();
   const region = settings.region;
@@ -77,39 +77,45 @@ export default function DesktopDashboard() {
       <DashboardSection>
         <SectionHeading>Lige nu</SectionHeading>
 
-        {todayIsLoading && <Message>Henter elpriser...</Message>}
-        {todayError && <Message>{todayError}</Message>}
+        {!region ? (
+          <Message>Vælg venligst en region under indstillinger.</Message>
+        ) : (
+          <>
+            {todayIsLoading && <Message>Henter elpriser...</Message>}
+            {todayError && <Message>{todayError}</Message>}
 
-        {!todayIsLoading && !todayError && (
-          currentPrice ? (
-            <CurrentPriceContainer>
-              <CurrentPriceCircle>
-                <CurrentPriceValue>
-                  {currentPrice.DKK_per_kWh.toFixed(3)} KR
-                </CurrentPriceValue>
-                <CurrentPriceUnit>PR. KWH</CurrentPriceUnit>
-              </CurrentPriceCircle>
+            {!todayIsLoading && !todayError && (
+              currentPrice ? (
+                <CurrentPriceContainer>
+                  <CurrentPriceCircle>
+                    <CurrentPriceValue>
+                      {currentPrice.DKK_per_kWh.toFixed(3)} KR
+                    </CurrentPriceValue>
+                    <CurrentPriceUnit>PR. KWH</CurrentPriceUnit>
+                  </CurrentPriceCircle>
 
-              <CurrentPriceTime>
-                Kl.{' '}
-                {new Date(currentPrice.time_start).toLocaleTimeString(
-                  'da-DK',
-                  { hour: '2-digit', minute: '2-digit' }
-                )}
-                {' – '}
-                {new Date(currentPrice.time_end).toLocaleTimeString(
-                  'da-DK',
-                  { hour: '2-digit', minute: '2-digit' }
-                )}
-              </CurrentPriceTime>
-            </CurrentPriceContainer>
-          ) : (
-            <Message>Ingen pris tilgængelig for den aktuelle time.</Message>
-          )
-        )}
+                  <CurrentPriceTime>
+                    Kl.{' '}
+                    {new Date(currentPrice.time_start).toLocaleTimeString(
+                      'da-DK',
+                      { hour: '2-digit', minute: '2-digit' }
+                    )}
+                    {' – '}
+                    {new Date(currentPrice.time_end).toLocaleTimeString(
+                      'da-DK',
+                      { hour: '2-digit', minute: '2-digit' }
+                    )}
+                  </CurrentPriceTime>
+                </CurrentPriceContainer>
+              ) : (
+                <Message>Ingen pris tilgængelig for den aktuelle time.</Message>
+              )
+            )}
 
-        {!todayIsLoading && !todayError && (
-          <PriceSummary prices={todayPrices} />
+            {!todayIsLoading && !todayError && (
+              <PriceSummary prices={todayPrices} />
+            )}
+          </>
         )}
       </DashboardSection>
 
@@ -118,14 +124,20 @@ export default function DesktopDashboard() {
 
         <OverviewListSpacer />
 
-        {todayIsLoading && <Message>Henter elpriser...</Message>}
-        {todayError && <Message>{todayError}</Message>}
+        {!region ? (
+          <Message>Vælg venligst en region under indstillinger.</Message>
+        ) : (
+          <>
+            {todayIsLoading && <Message>Henter elpriser...</Message>}
+            {todayError && <Message>{todayError}</Message>}
 
-        {!todayIsLoading && !todayError && (
-          <HourlyPrices
-            prices={todayPrices}
-            desktopScrollable
-          />
+            {!todayIsLoading && !todayError && (
+              <HourlyPrices
+                prices={todayPrices}
+                desktopScrollable
+              />
+            )}
+          </>
         )}
       </DashboardSection>
 
@@ -159,14 +171,20 @@ export default function DesktopDashboard() {
           </SelectedDateHeading>
         </HistoryControls>
 
-        {historyIsLoading && <Message>Henter elpriser...</Message>}
-        {historyError && <Message>{historyError}</Message>}
+        {!region ? (
+          <Message>Vælg venligst en region under indstillinger.</Message>
+        ) : (
+          <>
+            {historyIsLoading && <Message>Henter elpriser...</Message>}
+            {historyError && <Message>{historyError}</Message>}
 
-        {!historyIsLoading && !historyError && (
-          <HourlyPrices
-            prices={historyPrices}
-            desktopScrollable
-          />
+            {!historyIsLoading && !historyError && (
+              <HourlyPrices
+                prices={historyPrices}
+                desktopScrollable
+              />
+            )}
+          </>
         )}
       </DashboardSection>
     </DashboardContainer>
