@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const PageLayout = styled.div`
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   padding: 0;
   background: #27282b;
@@ -48,6 +50,8 @@ export const SettingsButton = styled.button`
 `;
 
 export const MainContent = styled.main`
+  flex: 1;
+  width: 100%;
   max-width: 1440px;
   margin: 1.5rem auto 0;
   padding: 0 1rem;
