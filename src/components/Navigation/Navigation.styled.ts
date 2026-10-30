@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 
 export const NavigationContainer = styled.nav`
   display: flex;
@@ -11,6 +11,11 @@ export const NavigationContainer = styled.nav`
   padding: 0.25rem;
   border-radius: 0;
   background: #201e1e;
+`;
+
+export const NavigationBrandLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
 `;
 
 export const NavigationBrand = styled.div`
