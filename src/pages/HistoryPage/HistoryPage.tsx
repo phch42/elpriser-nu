@@ -63,21 +63,27 @@ export default function HistoryPage() {
         </CalendarIcon>
       </DatePickerContainer>
 
-      {isLoading && <p>Henter elpriser...</p>}
-      {error && <p>{error}</p>}
-
-      {!isLoading && !error && (
+      {!region ? (
+        <p>Vælg venligst en region under indstillinger.</p>
+      ) : (
         <>
-          <SelectedDateHeading>
-            Elpriser for{' '}
-            {selectedDate.toLocaleDateString('da-DK', {
-              day: 'numeric',
-              month: 'long',
-              year: 'numeric',
-            })}
-          </SelectedDateHeading>
+          {isLoading && <p>Henter elpriser...</p>}
+          {error && <p>{error}</p>}
 
-          <HourlyPrices prices={prices} />
+          {!isLoading && !error && (
+            <>
+              <SelectedDateHeading>
+                Elpriser for{' '}
+                {selectedDate.toLocaleDateString('da-DK', {
+                  day: 'numeric',
+                  month: 'long',
+                  year: 'numeric',
+                })}
+              </SelectedDateHeading>
+
+              <HourlyPrices prices={prices} />
+            </>
+          )}
         </>
       )}
     </HistoryPageContainer>
