@@ -90,9 +90,10 @@ export default function SettingsPage() {
             id="price-region"
             value={settings.region}
             onChange={(event) =>
-              setRegion(event.target.value as 'DK1' | 'DK2')
+              setRegion(event.target.value as 'DK1' | 'DK2' | '')
             }
           >
+            <option value="" disabled>Vælg region</option>
             <option value="DK2">Region Øst</option>
             <option value="DK1">Region Vest</option>
           </RegionSelect>

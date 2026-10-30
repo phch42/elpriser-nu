@@ -12,14 +12,14 @@ import type { PriceRegion } from '../modules/prices/price.types';
 interface AppSettings {
     includeVat: boolean;
     lowPriceAlarm: boolean;
-    region: PriceRegion;
+    region: PriceRegion | '';
 }
 
 interface SettingsContextValue {
     settings: AppSettings;
     setIncludeVat: (value: boolean) => void;
     setLowPriceAlarm: (value: boolean) => void;
-    setRegion: (value: PriceRegion) => void;
+    setRegion: (value: PriceRegion | '') => void;
 }
 
 const SETTINGS_KEY = 'elprisen-settings';
@@ -27,7 +27,7 @@ const SETTINGS_KEY = 'elprisen-settings';
 const defaultSettings: AppSettings = {
     includeVat: false,
     lowPriceAlarm: true,
-    region: 'DK1',
+    region: '',
 };
 
 const SettingsContext = createContext<SettingsContextValue | undefined>(
@@ -44,7 +44,10 @@ function loadSettings(): AppSettings {
             return {
                 includeVat: parsed.includeVat ?? defaultSettings.includeVat,
                 lowPriceAlarm: parsed.lowPriceAlarm ?? defaultSettings.lowPriceAlarm,
-                region: parsed.region === 'DK2' ? 'DK2' : 'DK1',
+                region:
+                    parsed.region === 'DK1' || parsed.region === 'DK2'
+                        ? parsed.region
+                        : '',
             };
         }
     } catch {
@@ -73,7 +76,7 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
         setSettings((current) => ({ ...current, lowPriceAlarm: value }));
     }
 
-    function setRegion(value: PriceRegion) {
+    function setRegion(value: PriceRegion | '') {
         setSettings((current) => ({ ...current, region: value }));
     }
 
