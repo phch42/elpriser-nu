@@ -10,8 +10,6 @@ export const PageLayout = styled.div`
 
 export const Header = styled.header`
   width: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
 `;
 
 export const HeaderTop = styled.div`
