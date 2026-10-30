@@ -6,6 +6,7 @@ import { faGear } from '@fortawesome/free-solid-svg-icons';
 import Navigation from '../components/Navigation/Navigation';
 import Footer from '../components/Footer/Footer';
 import DesktopDashboard from '../components/DesktopDashboard/DesktopDashboard';
+import { useLowPriceAlarm } from '../hooks/useLowPriceAlarm';
 import {
   Header,
   HeaderTop,
@@ -40,6 +41,8 @@ export default function MainLayout() {
   const navigate = useNavigate();
   const location = useLocation();
   const isTabletOrDesktop = useTabletOrDesktop();
+
+  useLowPriceAlarm();
 
   const isSettingsPage = location.pathname === '/settings';
   const showDashboard = isTabletOrDesktop && !isSettingsPage;

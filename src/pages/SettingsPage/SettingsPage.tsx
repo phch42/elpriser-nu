@@ -1,4 +1,5 @@
 // src/pages/SettingsPage/SettingsPage.tsx
+
 import { useSettings } from '../../context/SettingsContext';
 import {
   SettingsHeading,
@@ -18,6 +19,28 @@ export default function SettingsPage() {
     setLowPriceAlarm,
     setRegion,
   } = useSettings();
+
+  async function handleAlarmToggle() {
+    if (settings.lowPriceAlarm) {
+      setLowPriceAlarm(false);
+      return;
+    }
+
+    if (!('Notification' in window)) {
+      alert('Din browser understøtter ikke notifikationer.');
+      return;
+    }
+
+    const permission = await Notification.requestPermission();
+
+    if (permission === 'granted') {
+      setLowPriceAlarm(true);
+    } else {
+      alert(
+        'Du skal tillade notifikationer for at aktivere alarmen.'
+      );
+    }
+  }
 
   return (
     <SettingsContent>
@@ -52,7 +75,7 @@ export default function SettingsPage() {
             role="switch"
             aria-checked={settings.lowPriceAlarm}
             aria-label="Laveste pris alarm"
-            onClick={() => setLowPriceAlarm(!settings.lowPriceAlarm)}
+            onClick={handleAlarmToggle}
           >
             <ToggleTrack $enabled={settings.lowPriceAlarm} />
           </ToggleButton>
