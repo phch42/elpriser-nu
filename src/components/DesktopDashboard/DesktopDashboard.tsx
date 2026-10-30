@@ -1,10 +1,11 @@
+// src/components/DesktopDashboard/DesktopDashboard.tsx
 import { useMemo, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 import PriceSummary from '../PriceSummary/PriceSummary';
 import HourlyPrices from '../HourlyPrices/HourlyPrices';
 import { usePrices } from '../../hooks/usePrices';
-import type { PriceRegion } from '../../modules/prices/price.types';
+import { useSettings } from '../../context/SettingsContext';
 import {
   DashboardContainer,
   DashboardSection,
@@ -24,7 +25,8 @@ import {
 } from './DesktopDashboard.styled';
 
 export default function DesktopDashboard() {
-  const region: PriceRegion = 'DK1';
+  const { settings } = useSettings();
+  const region = settings.region;
 
   const today = useMemo(() => new Date(), []);
   const [selectedDate, setSelectedDate] = useState(() => new Date());

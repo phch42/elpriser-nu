@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 import HourlyPrices from '../../components/HourlyPrices/HourlyPrices';
 import { usePrices } from '../../hooks/usePrices';
-import type { PriceRegion } from '../../modules/prices/price.types';
+import { useSettings } from '../../context/SettingsContext';
 import {
   HistoryPageContainer,
   HistoryHeading,
@@ -16,7 +16,9 @@ import {
 } from './HistoryPage.styled';
 
 export default function HistoryPage() {
-  const region: PriceRegion = 'DK1';
+  const { settings } = useSettings();
+  const region = settings.region;
+
   const [selectedDate, setSelectedDate] = useState(() => new Date());
 
   const { prices, isLoading, error } = usePrices(selectedDate, region);

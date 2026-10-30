@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react';
 import { usePrices } from '../../hooks/usePrices';
-import type { PriceRegion } from '../../modules/prices/price.types';
+import { useSettings } from '../../context/SettingsContext';
 import {
   CurrentPriceHeading,
   CurrentPriceContainer,
@@ -13,7 +13,9 @@ import {
 } from './CurrentPricePage.styled';
 
 export default function CurrentPricePage() {
-  const region: PriceRegion = 'DK1';
+  const { settings } = useSettings();
+  const region = settings.region;
+
   const today = useMemo(() => new Date(), []);
 
   const { prices, isLoading, error } = usePrices(today, region);

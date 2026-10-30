@@ -1,13 +1,15 @@
-// src/pages/OverViewPage.tsx
+// src/pages/OverviewPage.tsx
 import { useMemo } from 'react';
 import PriceSummary from '../components/PriceSummary/PriceSummary';
 import HourlyPrices from '../components/HourlyPrices/HourlyPrices';
 import { usePrices } from '../hooks/usePrices';
-import type { PriceRegion } from '../modules/prices/price.types';
+import { useSettings } from '../context/SettingsContext';
 import { OverviewHeading } from './OverviewPage.styled';
 
 export default function OverviewPage() {
-  const region: PriceRegion = 'DK1';
+  const { settings } = useSettings();
+  const region = settings.region;
+
   const today = useMemo(() => new Date(), []);
 
   const { prices, isLoading, error } = usePrices(today, region);
