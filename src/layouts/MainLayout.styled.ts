@@ -48,6 +48,7 @@ export const SettingsButton = styled.button`
   background: transparent;
   color: var(--color-accent);
   font-size: 1.5rem;
+  cursor: pointer;
 
   &:hover {
     color: var(--color-text);
@@ -81,5 +82,54 @@ export const MainContent = styled.main`
   @media (min-width: 1200px) {
     margin-top: 2rem;
     padding: 0 3rem;
+  }
+`;
+
+export const ModalOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.75);
+`;
+
+export const SettingsModal = styled.div`
+  position: relative;
+  width: 100%;
+  max-width: 36rem;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 8px;
+  background: #27282b;
+`;
+
+export const ModalCloseButton = styled.button`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-accent);
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-text);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 6px;
   }
 `;
