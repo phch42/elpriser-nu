@@ -4,8 +4,8 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import GlobalStyles from './styles/GlobalStyles';
 
-// Register service worker in production
-if ('serviceWorker' in navigator && import.meta.env.PROD) {
+// Register service worker
+if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker
             .register('/sw.js')
