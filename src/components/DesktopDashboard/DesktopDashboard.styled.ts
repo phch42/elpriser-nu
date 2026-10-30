@@ -8,9 +8,8 @@ export const DashboardContainer = styled.div`
   padding: 1rem 0 2rem;
 
   @media (min-width: 768px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: start;
-    gap: 2rem 1.5rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
   }
 
   @media (min-width: 1200px) {
