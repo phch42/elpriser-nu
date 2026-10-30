@@ -1,5 +1,5 @@
 // src/pages/SettingsPage/SettingsPage.tsx
-import { useEffect, useState } from 'react';
+import { useSettings } from '../../context/SettingsContext';
 import {
   SettingsHeading,
   SettingsContent,
@@ -11,46 +11,13 @@ import {
   RegionSelect,
 } from './SettingsPage.styled';
 
-interface SavedSettings {
-  includeVat: boolean;
-  lowPriceAlarm: boolean;
-}
-
-const SETTINGS_KEY = 'elprisen-settings';
-
-function loadSettings(): SavedSettings {
-  try {
-    const savedSettings = localStorage.getItem(SETTINGS_KEY);
-
-    if (savedSettings) {
-      return {
-        includeVat: JSON.parse(savedSettings).includeVat ?? false,
-        lowPriceAlarm: JSON.parse(savedSettings).lowPriceAlarm ?? true,
-      };
-    }
-  } catch {
-    console.warn('Could not load saved settings.');
-  }
-
-  return {
-    includeVat: false,
-    lowPriceAlarm: true,
-  };
-}
-
 export default function SettingsPage() {
-  const [settings, setSettings] = useState<SavedSettings>(loadSettings);
-
-  useEffect(() => {
-    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
-  }, [settings]);
-
-  function toggleSetting(setting: keyof SavedSettings) {
-    setSettings((current) => ({
-      ...current,
-      [setting]: !current[setting],
-    }));
-  }
+  const {
+    settings,
+    setIncludeVat,
+    setLowPriceAlarm,
+    setRegion,
+  } = useSettings();
 
   return (
     <SettingsContent>
@@ -68,7 +35,7 @@ export default function SettingsPage() {
             role="switch"
             aria-checked={settings.includeVat}
             aria-label="Priser inkl. moms"
-            onClick={() => toggleSetting('includeVat')}
+            onClick={() => setIncludeVat(!settings.includeVat)}
           >
             <ToggleTrack $enabled={settings.includeVat} />
           </ToggleButton>
@@ -85,7 +52,7 @@ export default function SettingsPage() {
             role="switch"
             aria-checked={settings.lowPriceAlarm}
             aria-label="Laveste pris alarm"
-            onClick={() => toggleSetting('lowPriceAlarm')}
+            onClick={() => setLowPriceAlarm(!settings.lowPriceAlarm)}
           >
             <ToggleTrack $enabled={settings.lowPriceAlarm} />
           </ToggleButton>
@@ -96,7 +63,13 @@ export default function SettingsPage() {
             Vælg region
           </SettingLabel>
 
-          <RegionSelect id="price-region" defaultValue="DK1">
+          <RegionSelect
+            id="price-region"
+            value={settings.region}
+            onChange={(event) =>
+              setRegion(event.target.value as 'DK1' | 'DK2')
+            }
+          >
             <option value="DK2">Region Øst</option>
             <option value="DK1">Region Vest</option>
           </RegionSelect>
